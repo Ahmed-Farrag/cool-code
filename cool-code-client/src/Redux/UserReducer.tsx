@@ -6,7 +6,7 @@ const userSlice = createSlice({
     users: [],
   },
   reducers: {
-    getUser: (state, action) => {
+    get: (state, action) => {
       state.users = action.payload.map((user: any) => {
         return {
           id: user.id,
@@ -17,10 +17,10 @@ const userSlice = createSlice({
         };
       });
     },
-    addUser: (state: any, action: any) => {
+    add: (state: any, action: any) => {
       state.users.push(action.payload);
     },
-    UpdatUser: (state: any, action: any) => {
+    Updat: (state: any, action: any) => {
       const payload = Array.isArray(action.payload)
         ? action.payload
         : [action.payload];
@@ -35,12 +35,12 @@ const userSlice = createSlice({
         };
       }
     },
-    deleteUser: (state, action) => {
+    delet: (state, action) => {
       const id = action.payload.id;
       state.users = state.users.filter((u: any) => u.id !== id);
     },
   },
 });
 
-export const { getUser, addUser, UpdatUser, deleteUser } = userSlice.actions;
+export const { get, add, Updat, delet } = userSlice.actions;
 export default userSlice.reducer;

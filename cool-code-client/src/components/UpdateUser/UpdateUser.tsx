@@ -3,7 +3,7 @@ import styles from "./UpdateUser.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { UpdatUser } from "../../Redux/UserReducer";
+import { Updat } from "../../Redux/UserReducer";
 
 export default function UpdateUser() {
   const { id } = useParams();
@@ -26,7 +26,7 @@ export default function UpdateUser() {
         active,
       })
       .then((res) => {
-        dispatch(UpdatUser(res.data));
+        dispatch(Updat(res.data));
         console.log(res);
         navigate("/");
       })

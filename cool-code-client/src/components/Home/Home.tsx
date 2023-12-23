@@ -3,7 +3,7 @@ import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUser, getUser } from "../../Redux/UserReducer";
+import { delet, get } from "../../Redux/UserReducer";
 
 export default function Home(props: any) {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function Home(props: any) {
         const res = await axios.get(`http://localhost:3000/cities`);
         console.log(res);
 
-        dispatch(getUser(res.data));
+        dispatch(get(res.data));
       } catch (e) {
         console.log(e);
       }
@@ -27,7 +27,7 @@ export default function Home(props: any) {
       .delete("http://localhost:3000/cities/" + id)
       .then((res) => {
         console.log(res);
-        dispatch(deleteUser({ id }));
+        dispatch(delet({ id }));
       })
       .catch((err) => console.log(err));
   };

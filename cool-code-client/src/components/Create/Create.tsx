@@ -3,7 +3,7 @@ import styles from "./Create.module.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addUser } from "../../Redux/UserReducer";
+import { add } from "../../Redux/UserReducer";
 
 export default function Create() {
   const [name, setName] = useState();
@@ -18,7 +18,7 @@ export default function Create() {
     axios
       .post(`http://localhost:3000/cities`, { name, description, active })
       .then((res) => {
-        dispatch(addUser(res.data));
+        dispatch(add(res.data));
         // console.log(res);
         navigate("/");
       })
