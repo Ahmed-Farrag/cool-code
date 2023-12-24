@@ -16,23 +16,6 @@ export default function Login({ saveuserData }: any) {
   const [isLoading, setIsLoading] = useState(false); // spinner
   const [messageError, setMessageError] = useState(""); //handle error
 
-  // const [userId, setUserId] = useState("");
-  // const [userData, setUserData] = useState<UserData | null>(null);
-
-  // useEffect(() => {
-  //   if (userId) {
-  //     axios
-  //       .get(`http://localhost:3000/user/${userId}`)
-  //       .then((response) => {
-  //         setUserData(response.data);
-  //         console.log("Received user data:", response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching user data:", error);
-  //       });
-  //   }
-  // }, [userId]);
-
   async function handleLogin(values: any) {
     setIsLoading(true);
     await axios
