@@ -13,6 +13,7 @@ export default function Register() {
     setIsLoading(true);
     await axios
       .post(`http://localhost:3000/user`, values)
+
       //  handle error
       .then((response) => {
         console.log(response);
@@ -30,12 +31,15 @@ export default function Register() {
         );
       });
   }
-
   let validation = Yup.object({
     name: Yup.string()
       .required("name is required")
       .min(3, "name minlength is 3")
       .max(10, "name maxlength is 10"),
+    linkedInUrl: Yup.string().matches(
+      /^(https?:\/\/)?([\w\d]+\.)?linkedin\.com\/.*$/,
+      "LinkedIn URL is invalid"
+    ),
     email: Yup.string().required("email is required").email("email is invalid"),
     password: Yup.string()
       .required("password is required")
@@ -47,6 +51,7 @@ export default function Register() {
   let formik = useFormik({
     initialValues: {
       name: "",
+      linkedInUrl: "",
       email: "",
       password: "",
     },
@@ -75,6 +80,22 @@ export default function Register() {
           />
           {formik.errors.name && formik.touched.name ? (
             <div className="alert alert-danger">{formik.errors.name}</div>
+          ) : null}
+
+          <label htmlFor="linkedInUrl">LinkedIn URL</label>
+          <input
+            className="form-control mv-2"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={formik.values.linkedInUrl}
+            type="url"
+            name="linkedInUrl"
+            id="linkedInUrl"
+          />
+          {formik.errors.linkedInUrl && formik.touched.linkedInUrl ? (
+            <div className="alert alert-danger">
+              {formik.errors.linkedInUrl}
+            </div>
           ) : null}
 
           <label htmlFor="email">Email</label>

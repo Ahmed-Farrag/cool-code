@@ -48,11 +48,22 @@ export default function Navbar({ userData }: any) {
                   </li>
                 </>
               ) : (
-                <li className="nav-item">
-                  <Link className="nav-link" to="login" onClick={handleLogout}>
-                    Logout
-                  </Link>
-                </li>
+                <>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      to="login"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="profile">
+                      Profile
+                    </Link>
+                  </li>
+                </>
               )}
             </ul>
           </div>

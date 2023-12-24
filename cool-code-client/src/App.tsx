@@ -3,13 +3,14 @@ import "./App.css";
 import Layout from "./components/Layout/Layout";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
-import Register from "./components/Regster/Register";
 import NotFound from "./components/NotFound/NotFound";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Create from "./components/Create/Create";
 import UpdateUser from "./components/UpdateUser/UpdateUser";
+import Register from "./components/Register/Register";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -46,6 +47,14 @@ function App() {
             <ProtectedRoute>
               <UpdateUser />
             </ProtectedRoute>
+          ),
+        },
+        {
+          path: "profile",
+          element: (
+            // <ProtectedRoute>
+            <Profile />
+            // </ProtectedRoute>
           ),
         },
         { path: "login", element: <Login saveuserData={saveuserData} /> },

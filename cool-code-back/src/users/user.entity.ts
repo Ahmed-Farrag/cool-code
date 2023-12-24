@@ -13,4 +13,13 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column({ nullable: true })
+  linkedInUrl: string;
+
+  @Column({ nullable: true })
+  linkedInName: string;
+
+  @Column({ nullable: true })
+  linkedInPhotoUrl: string;
 }

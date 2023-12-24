@@ -39,6 +39,14 @@ const userSlice = createSlice({
       const id = action.payload.id;
       state.users = state.users.filter((u: any) => u.id !== id);
     },
+    // getProfile: (state, action) => {
+    //   state.users = action.payload.map((user: any) => {
+    //     return {
+    //       id: user.id,
+    //       email:
+    //     };
+    //   });
+    // },
   },
 });
 

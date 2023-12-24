@@ -1,6 +1,4 @@
-// import { JwtService } from '@nestjs/jwt';
-import { Body, Controller, Post } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import { Body, Controller, Request, Get, Post, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
 
@@ -9,12 +7,25 @@ export class UsersController {
   constructor(private readonly UserService: UsersService) {}
 
   @Post()
-  async createUser(@Body() user: User) {
-    const hashedPass = await bcrypt.hash(user.password, 10);
-    const newUser = {
-      ...user,
-      password: hashedPass,
-    };
-    return this.UserService.createUser(newUser);
+  async registerUser(@Body() user: User): Promise<User> {
+    const registeredUser = await this.UserService.createUser(user);
+    return registeredUser;
+  }
+
+  @Get(':id')
+  async getUser(@Param('id') id: string): Promise<
+    | {
+        email: string;
+        linkedInName: string;
+        linkedInPhotoUrl: string;
+      }
+    | undefined
+  > {
+    const foundUser = await this.UserService.findUserById(parseInt(id, 10));
+    if (foundUser) {
+      const { email, linkedInName, linkedInPhotoUrl } = foundUser;
+      return { email, linkedInName, linkedInPhotoUrl };
+    }
+    return undefined;
   }
 }

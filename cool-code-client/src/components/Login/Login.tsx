@@ -1,13 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Login.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+interface UserData {
+  linkedInPhotoUrl: string;
+  linkedInName: string;
+  email: string;
+}
+
 export default function Login({ saveuserData }: any) {
   let navigate = useNavigate(); //navigate to login
   const [isLoading, setIsLoading] = useState(false); // spinner
   const [messageError, setMessageError] = useState(""); //handle error
+
+  // const [userId, setUserId] = useState("");
+  // const [userData, setUserData] = useState<UserData | null>(null);
+
+  // useEffect(() => {
+  //   if (userId) {
+  //     axios
+  //       .get(`http://localhost:3000/user/${userId}`)
+  //       .then((response) => {
+  //         setUserData(response.data);
+  //         console.log("Received user data:", response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching user data:", error);
+  //       });
+  //   }
+  // }, [userId]);
 
   async function handleLogin(values: any) {
     setIsLoading(true);
@@ -57,6 +81,7 @@ export default function Login({ saveuserData }: any) {
     <>
       <div className="w-75 mx-auto py-4">
         <h3> Login Now:</h3>
+
         {/* for handle error */}
         {messageError.length > 0 ? (
           <div className="alert alert-danger">{messageError}</div>
